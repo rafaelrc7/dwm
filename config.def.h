@@ -23,17 +23,20 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
+static const char col_urgborder[]   = "#ff0000";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+	   [SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
 };
 static unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeUrg]  = { OPAQUE, baralpha, borderalpha },
 };
 
 static const char *const autostart[] = {
