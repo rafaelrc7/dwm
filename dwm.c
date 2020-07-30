@@ -190,7 +190,8 @@ struct Systray {
 enum resource_type {
 	STRING = 0,
 	INTEGER = 1,
-	FLOAT = 2
+	FLOAT = 2,
+	ALPHA = 3
 };
 
 typedef struct {
@@ -3230,10 +3231,12 @@ resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)
 	char *sdst = NULL;
 	int *idst = NULL;
 	float *fdst = NULL;
+	unsigned int (*adst)[LENGTH(alphas)][3] = NULL;
 
 	sdst = dst;
 	idst = dst;
 	fdst = dst;
+	adst = dst;
 
 	char fullname[256];
 	char *type;
@@ -3255,6 +3258,9 @@ resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)
 		case FLOAT:
 			*fdst = strtof(ret.addr, NULL);
 			break;
+		case ALPHA:
+			for(int i = 0; i < LENGTH(*adst); i++)
+				(*adst)[i][1] = strtof(ret.addr, NULL) * OPAQUE;
 		}
 	}
 }

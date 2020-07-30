@@ -147,6 +147,7 @@ ResourcePref resources[] = {
 		{ "nmaster",          	INTEGER, &nmaster },
 		{ "resizehints",       	INTEGER, &resizehints },
 		{ "mfact",      	 	FLOAT,   &mfact },
+		//{ "alpha",              ALPHA,   alphas},
 };
 
 #include "shiftview.c"
