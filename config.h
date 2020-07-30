@@ -23,14 +23,16 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
-static char col_urgborder[]   		= "#ff0000";
+static char urgbordercolor[]   		= "#ff0000";
+static char urgfgcolor[]            = "#bbbbbb";
+static char urgbgcolor[]            = "#222222";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
-	   [SchemeUrg]  = { normfgcolor, col_urgborder,  col_urgborder  },
+	   [SchemeUrg]  = { urgfgcolor,  urgbgcolor,  urgbordercolor  },
 };
 static unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -135,6 +137,9 @@ ResourcePref resources[] = {
 		{ "selbgcolor",         STRING,  &selbgcolor },
 		{ "selbordercolor",     STRING,  &selbordercolor },
 		{ "selfgcolor",         STRING,  &selfgcolor },
+		{ "urgbgcolor",         STRING,  &urgbgcolor},
+		{ "urgbordercolor",     STRING,  &urgbordercolor},
+		{ "urgfgcolor",         STRING,  &urgfgcolor},
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },
