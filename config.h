@@ -155,7 +155,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ALTKEY,                XK_Return, togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filemanager } },
 	{ MODKEY,                       XK_q,      spawn,          {.v = browser } },
 	{ MODKEY|ALTKEY,                XK_n,      spawn,          {.v = dmenunetwork } },
