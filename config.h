@@ -70,7 +70,9 @@ static const Rule rules[] = {
 	{ "Galculator",       NULL,       NULL,       0,            1,           0,         0,        -1 },
 	{ "KeePassXC",        NULL,       NULL,       1 << 8,       0,           0,         0,        -1 },
 	{ "Thunderbird",      NULL,       NULL,       1 << 8,       0,           0,         0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ "Pavucontrol",      NULL,       NULL,       0,			1,           0,         0,        -1 },
+	{ "htop",			  NULL,       NULL,       0,			1,           0,         0,        -1 },
+	{ NULL,               NULL,   "Event Tester", 0,            0,           0,         1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -150,6 +152,7 @@ ResourcePref resources[] = {
 		{ "alpha",              ALPHA,   alphas},
 };
 
+#include <X11/XF86keysym.h>
 #include "shiftview.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -207,6 +210,15 @@ static Key keys[] = {
 	{ MODKEY,						XK_Right,  shiftview,	   {.i = +1}  },
 	{ MODKEY,						XK_Left,   shiftview,	   {.i = -1}  },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
+	{ 0, 							XF86XK_AudioMute,			spawn,		SHCMD("amixer -q set Master toggle; kill -37 $(pidof dwmblocks)") },
+	{ 0, 							XF86XK_AudioRaiseVolume,	spawn,		SHCMD("amixer -q set Master 5%+; kill -37 $(pidof dwmblocks)") },
+	{ 0, 							XF86XK_AudioLowerVolume,	spawn,		SHCMD("amixer -q set Master 5%-; kill -37 $(pidof dwmblocks)") },
+	{ 0, 							XF86XK_AudioPrev,			spawn,		SHCMD("mpc prev;sp prev") },
+	{ 0, 							XF86XK_AudioNext,			spawn,		SHCMD("mpc next;sp next") },
+	{ 0, 							XF86XK_AudioPause,			spawn,		SHCMD("mpc pause;sp pause") },
+	{ 0, 							XF86XK_AudioPlay,			spawn,		SHCMD("mpc play;sp play") },
+	{ MODKEY,						XF86XK_AudioPlay,			spawn,		SHCMD("spotify") },
+	{ 0, 							XF86XK_AudioStop,			spawn,		SHCMD("mpc stop;pkill -x spotify") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -229,6 +241,8 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
 	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
+	{ ClkStatusText,        0,              Button4,        sigdwmblocks,   {.i = 4} },
+	{ ClkStatusText,        0,              Button5,        sigdwmblocks,   {.i = 5} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
