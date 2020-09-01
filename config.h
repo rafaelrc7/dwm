@@ -73,7 +73,7 @@ static const Rule rules[] = {
 	{ "Pavucontrol",      NULL,       NULL,       0,            1,           0,         0,        -1 },
 	{ "htop",             NULL,       NULL,       0,            1,           0,         0,        -1 },
 	{ "mpd",              NULL,       NULL,       0,            1,           0,         0,        -1 },
-	{ "Spotify",          NULL,       NULL,       1 << 4,       0,           0,         0,        -1 },
+	{ "spotify",          NULL,       NULL,       1 << 4,       0,           0,         0,        -1 },
 	{ NULL,               NULL,   "Event Tester", 0,            0,           0,         1,        -1 }, /* xev */
 };
 
@@ -92,7 +92,7 @@ static const Layout layouts[] = {
 /* key definitions */
 #define SUPER Mod4Mask
 #define ALTKEY Mod1Mask
-	
+
 #define MODKEY SUPER
 
 #define TAGKEYS(KEY,TAG) \
@@ -217,10 +217,14 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioLowerVolume,    spawn,    SHCMD("amixer -q set Master 5%-; kill -37 $(pidof dwmblocks)") },
 	{ ShiftMask,                    XF86XK_AudioRaiseVolume,    spawn,    SHCMD("amixer -q set Master 100%; kill -37 $(pidof dwmblocks)") },
 	{ MODKEY,                       XF86XK_AudioRaiseVolume,    spawn,    SHCMD("pavucontrol") },
-	{ 0,                            XF86XK_AudioPrev,           spawn,    SHCMD("mpc prev;sp prev") },
-	{ 0,                            XF86XK_AudioNext,           spawn,    SHCMD("mpc next;sp next") },
-	{ 0,                            XF86XK_AudioPause,          spawn,    SHCMD("mpc pause;sp pause") },
-	{ 0,                            XF86XK_AudioPlay,           spawn,    SHCMD("mpc play;sp play") },
+	{ 0,                            XF86XK_AudioPrev,           spawn,    SHCMD("mpc prev") },
+	{ 0,                            XF86XK_AudioNext,           spawn,    SHCMD("mpc next") },
+	{ 0,                            XF86XK_AudioPause,          spawn,    SHCMD("mpc stop") },
+	{ 0,                            XF86XK_AudioPlay,           spawn,    SHCMD("mpc toggle") },
+	{ ShiftMask,                    XF86XK_AudioPrev,           spawn,    SHCMD("sp prev") },
+	{ ShiftMask,                    XF86XK_AudioNext,           spawn,    SHCMD("sp next") },
+	{ ShiftMask,                    XF86XK_AudioPause,          spawn,    SHCMD("sp pause") },
+	{ ShiftMask,                    XF86XK_AudioPlay,           spawn,    SHCMD("sp play") },
 	{ MODKEY|ShiftMask,             XF86XK_AudioPlay,           spawn,    SHCMD("spotify") },
 	{ MODKEY,                       XF86XK_AudioPlay,           spawn,    SHCMD("st -c mpd -e ncmpcpp") },
 	{ 0,                            XF86XK_AudioStop,           spawn,    SHCMD("mpc stop;pkill -x spotify") },
