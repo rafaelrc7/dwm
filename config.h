@@ -113,7 +113,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 #define BROWSER "firefox"
-#define FILEMNG "thunar"
+#define FILEMNG "pcmanfm"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -126,10 +126,10 @@ static const char *browser[] = { BROWSER, NULL };
 static const char *dmenunetwork[] = { "networkmanager_dmenu", NULL };
 static const char *dmenuclip[] = { "clipmenu", NULL };
 static const char *dmenuuni[] = { "unipicker", "--copy", "--command", "dmenu -i", NULL };
-static const char *dmenuemoji[] = { "/home/rafael/.bin/dmenu-emoji", NULL };
-static const char *printscreen[] = { "screengrab", "-r", NULL };
-static const char *togglepicom[] = { "/home/rafael/.bin/toggle-picom", NULL };
-static const char *togglemic[] = { "/home/rafael/.bin/toggle-mic", NULL };
+static const char *dmenuemoji[] = { "~/.bin/dmenu-emoji", NULL };
+static const char *printscreen[] = { "~/.bin/scrtsxc", NULL };
+static const char *togglepicom[] = { "~/.bin/toggle-picom", NULL };
+static const char *togglemic[] = { "~/.bin/toggle-mic", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -221,13 +221,13 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioNext,           spawn,    SHCMD("mpc next") },
 	{ 0,                            XF86XK_AudioPause,          spawn,    SHCMD("mpc stop") },
 	{ 0,                            XF86XK_AudioPlay,           spawn,    SHCMD("mpc toggle") },
-	{ ShiftMask,                    XF86XK_AudioPrev,           spawn,    SHCMD("sp prev") },
-	{ ShiftMask,                    XF86XK_AudioNext,           spawn,    SHCMD("sp next") },
-	{ ShiftMask,                    XF86XK_AudioPause,          spawn,    SHCMD("sp pause") },
-	{ ShiftMask,                    XF86XK_AudioPlay,           spawn,    SHCMD("sp play") },
-	{ MODKEY|ShiftMask,             XF86XK_AudioPlay,           spawn,    SHCMD("spotify") },
+	{ ShiftMask,                    XF86XK_AudioPrev,           spawn,    SHCMD("sp prev; kill -54 $(pidof dwmblocks)") },
+	{ ShiftMask,                    XF86XK_AudioNext,           spawn,    SHCMD("sp next; kill -54 $(pidof dwmblocks)") },
+	{ ShiftMask,                    XF86XK_AudioPause,          spawn,    SHCMD("sp pause; kill -54 $(pidof dwmblocks)") },
+	{ ShiftMask,                    XF86XK_AudioPlay,           spawn,    SHCMD("sp play; kill -54 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,             XF86XK_AudioPlay,           spawn,    SHCMD("spotify; kill -54 $(pidof dwmblocks)") },
 	{ MODKEY,                       XF86XK_AudioPlay,           spawn,    SHCMD("st -c mpd -e ncmpcpp") },
-	{ 0,                            XF86XK_AudioStop,           spawn,    SHCMD("mpc stop;pkill -x spotify") },
+	{ 0,                            XF86XK_AudioStop,           spawn,    SHCMD("mpc stop;pkill -x spotify; kill -54 $(pidof dwmblocks)") },
 	{ ControlMask|ShiftMask,        XK_Escape,                  spawn,    SHCMD("st -c htop -e htop") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
